@@ -17,8 +17,10 @@
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             @if (auth()->user()->role == 'admin')
               <img src="{{ asset('assets/img/admin.jpg') }}" alt="Profile" class="rounded-circle">
-            @else
+            @elseif (auth()->user()->role == 'penyembelih')
               <img src="{{ asset('assets/img/penyembelih.jpg') }}" alt="Profile" class="rounded-circle">
+            @else
+              <img src="{{ asset('assets/img/admin.jpg') }}" alt="Profile" class="rounded-circle">
             @endif
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->nama }}</span>
           </a><!-- End Profile Iamge Icon -->

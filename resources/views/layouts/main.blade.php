@@ -27,7 +27,11 @@
   <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{{  asset('assets/css/style.css') }}" rel="stylesheet">
+  @if (auth()->user()->role == 'customer')
+    <link href="{{  asset('assets/css/user.css') }}" rel="stylesheet">
+  @else
+    <link href="{{  asset('assets/css/style.css') }}" rel="stylesheet">
+  @endif
 
   <!-- =======================================================
   * Template Name: NiceAdmin

@@ -51,7 +51,9 @@ Route::group(['middleware' => 'cekrole:customer'], function() {
 });
 
 
-
+Route::get('/pesanan-saya', function () {
+    return view('pages/customer/detail-pembelian');
+});
 
 
 
@@ -67,11 +69,3 @@ Route::get('/login', function () {
 Route::get('/pemesanan', function () {
     return view('pages/customer/pembelian');
 });
-
-use App\Http\Controllers\OrderController;
-
-Route::get('/products/{id}/order', [OrderController::class, 'create'])->name('order.create');
-Route::post('/products/{id}/order', [OrderController::class, 'store'])->name('order.store');
-
-
-

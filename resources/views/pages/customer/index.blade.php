@@ -51,19 +51,19 @@
                      </li>
                      
                   </ul>
-                  <form class="form-inline my-2 my-lg-0">
+                  <ul class="navbar-nav">
+                     @if (empty(auth()->user()))
+                     <li class="nav-item"><a class="nav-link" href="/login">login</a></li>
+                     @else
+                     <li class="nav-item border text-center"><a class="nav-link" href="/pesanan-saya">{{auth()->user()->nama}}</a></li>
+                     <li class="nav-item"><a class="nav-link" href="/logout">logout</a></li>
+                     @endif
+                     
+                  </ul>
+                  {{-- <form class="form-inline my-2 my-lg-0">
                      <div class="search_icon">
-                        <ul class="navbar-nav">
-                           @if (empty(auth()->user()))
-                           <li class="nav-item"><a class="nav-link" href="/login">login</a></li>
-                           @else
-                           <li class="nav-item border text-center"><a class="nav-link" href="#">{{auth()->user()->nama}}</a></li>
-                           <li class="nav-item"><a class="nav-link" href="/logout">logout</a></li>
-                           @endif
-                           
-                        </ul>
                      </div>
-                  </form>
+                  </form> --}}
                </div>
          </nav>
          </div>
