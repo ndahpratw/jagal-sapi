@@ -17,7 +17,7 @@ class ProdukSeeder extends Seeder
             [
                 'nama_produk' => 'Pemotongan Sapi',
                 'deskripsi' => 'Layanan pemotongan hewan sesuai syariat',
-                'gambar' => 'pemotongan_hewan.jpg',
+                'gambar' => 'pemotongan_hewan.png',
                 // 'id_hewan' => 1, // Sesuaikan dengan ID dari tabel jenis_hewans
                 'stok' => 10,
                 'harga' => 500000,
@@ -28,7 +28,7 @@ class ProdukSeeder extends Seeder
             [
                 'nama_produk' => 'Penjualan Sapi Ternak',
                 'deskripsi' => 'Penjualan sapi berkualitas',
-                'gambar' => 'penjualan_hewan.jpg',
+                'gambar' => 'penjualan_hewan.png',
                 // 'id_hewan' => 2, // Sesuaikan dengan ID dari tabel jenis_hewans
                 'stok' => 20,
                 'harga' => 2000000,

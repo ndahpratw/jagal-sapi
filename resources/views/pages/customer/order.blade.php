@@ -3,6 +3,16 @@
 <head>
     <title>Pembelian</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    <style>
+        body {
+            font-family: "Poppins";  
+        }
+    </style>
+   
+   
+
 </head>
 <body class="p-5">
     <div>
@@ -76,7 +86,11 @@
                                 <label for="note" class="form-label">Pesan (Opsional)</label>
                                 <textarea name="pesan" class="form-control" rows="2"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Buat Pesanan</button>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="/" class="btn btn-secondary">Batal</a>
+                                <button type="submit" class="btn btn-primary">Buat Pesanan</button>   
+                            </div>
+                            
                         </form>
                      </div>
                     

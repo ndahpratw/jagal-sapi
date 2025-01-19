@@ -37,10 +37,10 @@
                                 <table class="table">
                                     <thead>
                                         <th>NO</th>
-                                        <th class='w-50'>GAMBAR</th>
+                                        <th class="w-25">GAMBAR</th>
                                         <th >PRODUK</th>
-                                        <th> HEWAN</th>
-                                        <th class='w-50'>DESKRIPSI</th>
+                                        <th >STOK</th>
+                                        <th >DESKRIPSI</th>
                                         <th >AKSI</th>
                                     </thead>
                                     <tbody>
@@ -51,7 +51,7 @@
                                                     <img src="{{asset('assets/img/katalog_produk/'.$item->gambar)}}" alt="{{$item->gambar}}" class='w-50'>
                                                 </td>
                                                 <td>{{$item->nama_produk}}</td>
-                                                <td>{{$item->jenisHewan->jenis_hewan}}</td>
+                                                <td>{{$item->stok}} {{$item->satuan}}</td>
                                                 <td>{{$item->deskripsi}}</td>
                                                 <td>
                                                     <a href="{{route('produk.edit',$item->id)}}">Edit Data</a>

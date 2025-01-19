@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->id();
-            $table->enum('status_pemesanan',["menunggu pembayaran", "pesanan anda sedang diproses", "pesanan selesai", "pesananan dalam pengiriman"]);
+            $table->enum('status_pemesanan',["menunggu pembayaran", "menunggu konfirmasi admin", "pesanan sedang diproses", "pesanan selesai"]);
             $table->foreignId('id_laporan')->nullable()->references('id')->on('laporan_pemotongans')->onDelete('cascade');
             $table->foreignId('id_konsumen')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('id_produk')->references('id')->on('katalog_produks')->onDelete('cascade');
             $table->date('tanggal_pemesanan');
             $table->date('jadwal_pemotongan')->nullable();
+            $table->enum('status_pemotongan', ["sedang diproses", "selesai"])->nullable();
+            $table->integer('jumlah_pesanan');
             $table->integer('total_biaya');
             $table->string('alamat');
             $table->string('pesan')->nullable();

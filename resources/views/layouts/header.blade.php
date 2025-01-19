@@ -3,7 +3,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="{{ asset('assets/img/logo.jpg') }}" alt="">
+        <img src="{{ asset('assets/img/logo.png') }}" alt="">
         <span class="d-none d-lg-block"> JAGAL SAPI </span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -20,7 +20,7 @@
             @elseif (auth()->user()->role == 'penyembelih')
               <img src="{{ asset('assets/img/penyembelih.jpg') }}" alt="Profile" class="rounded-circle">
             @else
-              <img src="{{ asset('assets/img/admin.jpg') }}" alt="Profile" class="rounded-circle">
+              <img src="{{ asset('assets/img/profil user.jpg') }}" alt="Profile" class="rounded-circle">
             @endif
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->nama }}</span>
           </a><!-- End Profile Iamge Icon -->

@@ -14,10 +14,10 @@
     <section class="section dashboard">
         <div class="row">
             <div class="col-xl-12">
-              @if (session()->has('success'))
+              @if (session()->has('sukses'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                   <i class="bi bi-check-circle me-1"></i>
-                    {{ session('success') }}
+                    {{ session('sukses') }}
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
               @elseif (session()->has('error'))
@@ -40,86 +40,334 @@
                     </li>
     
                     <li class="nav-item">
-                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#belum-bayar">Belum Bayar</button>
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#belum-bayar">menunggu pembayaran</button>
                     </li>
     
                     <li class="nav-item">
-                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#sedang-dikemas">Sedang Dikemas</button>
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#menunggu-konfirmasi">menunggu konfirmasi admin</button>
                     </li>
     
                     <li class="nav-item">
-                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#dikirim">Dikirim</button>
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#dikirim">pesananan sedang diproses</button>
                     </li>
     
                     <li class="nav-item">
-                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#selesai">Selesai</button>
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#selesai">pesanan selesai</button>
                     </li>
     
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                       <button class="nav-link" data-bs-toggle="tab" data-bs-target="#dibatalkan">Dibatalkan</button>
-                    </li>
+                    </li> --}}
                   </ul>
     
                   <div class="tab-content pt-2">
     
-                    <div class="tab-pane fade show active " id="semua-pesanan">          
-                        <div class="row">
-                            <div class="col-md-6 my-3">
-                              <div class="card">
-                                <div class="card-body my-4">
-                                  <div class="d-flex justify-content-between align-item-center">
-                                    <p style="color: #254336">Nama</p>
-                                      <p class="text-danger">Status Pesanan</p>
-                                  </div>
-    
-                                  <div class="row">
-                                    <div class="col-md-3">
-                                      <img src="" alt="produk" class="img-fluid">
-                                    </div>
-                                    <div class="col-md-9">
-                                      <div class="d-flex justify-content-between">
-                                        <b>
-                                          {{-- {{ $item->produk->nama_produk }} --}} Nama
-                                        </b>
-                                        
-                                          x 5
-                                      </div>
-                                      <p class="d-flex justify-content-end"> 
-                                        2000000 
-                                        <hr>
-                                        <div class="d-flex justify-content-between">
-                                          <p> Total Pesanan : </p>
-                                          7
-                                        </div>
-                                      </p>
-                                    </div>
-                                  <hr>
-                                  </div>
-                                </div>
+                    <div class="tab-pane fade show active " id="semua-pesanan">  
+                      @if (count($pesanan))
+                      <div class="row">
+                        @foreach ($pesanan as $item)
+                        <div class="col-md-6 my-3">
+                          <div class="card">
+                            <div class="card-body my-4">
+                              <div class="d-flex justify-content-between align-item-center">
+                                {{-- <p style="color: #254336">Nama</p> --}}
+                                  <p class="text-danger">{{$item->status_pemesanan}}</p>
                               </div>
+
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <img src="{{asset('assets/img/katalog_produk/'.$item->produk->gambar)}}" alt="produk" class="img-fluid">
+                                </div>
+                                <div class="col-md-9">
+                                  <div class="d-flex justify-content-between">
+                                    <b>
+                                      {{ $item->produk->nama_produk }} 
+                                    </b>
+                                    
+                                      x {{$item->jumlah_pesanan}}
+                                  </div>
+                                  <p class="d-flex justify-content-end"> 
+                                    {{$item->produk->harga}} 
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                      <p> Total Pesanan : </p>
+                                      {{$item->total_biaya}}
+                                    </div>
+                                  </p>
+                                </div>
+                              <hr>
+                              </div>
+                              @if ($item->status_pemesanan=='menunggu pembayaran')
+                              <div class="d-flex justify-content-center align-items-center">
+                                <a  class='text-center btn btn-danger' href="/pembayaran/{{$item->id}}">Bayar Sekarang</a>
+                              </div>
+                              @elseif ($item->status_pemesanan!="menunggu pembayaran" || $item->status_pemesanan!="menunggu konfirmasi admin")
+                              <div class="d-flex justify-content-center align-items-center">
+                                <a href="/nota-pembayaran/{{$item->id}}" class="btn btn-primary">Nota Pembelian</a>
+                              </div>
+                              
+
+                              @endif
+                             
                             </div>
+                          </div>
                         </div>
+                        @endforeach
+                         
+                      </div>
+                      @else
+                      <div class="d-flex justify-content-center align-items-center my-5 text-danger">
+                        Tidak Ada Pesanan
+                      </div>
+                          
+                      @endif        
+                       
                     </div>
     
                     <div class="tab-pane fade pt-3" id="belum-bayar">
-                        belum bayar
+                      @if (count($menunggu_pembayaran))
+                      <div class="row">
+                        @foreach ($menunggu_pembayaran as $item)
+                        <div class="col-md-6 my-3">
+                          <div class="card">
+                            <div class="card-body my-4">
+                              <div class="d-flex justify-content-between align-item-center">
+                                {{-- <p style="color: #254336">Nama</p> --}}
+                                  <p class="text-danger">{{$item->status_pemesanan}}</p>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <img src="{{asset('assets/img/katalog_produk/'.$item->produk->gambar)}}" alt="produk" class="img-fluid">
+                                </div>
+                                <div class="col-md-9">
+                                  <div class="d-flex justify-content-between">
+                                    <b>
+                                      {{ $item->produk->nama_produk }} 
+                                    </b>
+                                    
+                                      x {{$item->jumlah_pesanan}}
+                                  </div>
+                                  <p class="d-flex justify-content-end"> 
+                                    {{$item->produk->harga}} 
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                      <p> Total Pesanan : </p>
+                                      {{$item->total_biaya}}
+                                    </div>
+                                  </p>
+                                </div>
+                              <hr>
+                              </div>
+                              @if ($item->status_pemesanan=='menunggu pembayaran')
+                              <div class="d-flex justify-content-center align-items-center">
+                                <a  class='text-center btn btn-danger' href="/pembayaran/{{$item->id}}">Bayar Sekarang</a>
+                              </div>
+                              @elseif ($item->status_pemesanan!="menunggu pembayaran" || $item->status_pemesanan!="menunggu konfirmasi admin")
+                              <div class="d-flex justify-content-center align-items-center">
+                                <a href="/nota-pembayaran/{{$item->id}}" class="btn btn-primary">Nota Pembelian</a>
+                              </div>
+                              
+
+                              @endif
+                             
+                            </div>
+                          </div>
+                        </div>
+                        @endforeach
+                         
+                      </div>
+                      @else
+                      <div class="d-flex justify-content-center align-items-center my-5 text-danger">
+                        Tidak Ada Pesanan
+                      </div>
+                          
+                      @endif        
                     </div>
     
-                    <div class="tab-pane fade pt-3" id="sedang-dikemas">
-                        dikemas
+                    <div class="tab-pane fade pt-3" id="menunggu-konfirmasi">
+                      @if (count($menunggu_konfirmasi_admin))
+                      <div class="row">
+                        @foreach ($menunggu_konfirmasi_admin as $item)
+                        <div class="col-md-6 my-3">
+                          <div class="card">
+                            <div class="card-body my-4">
+                              <div class="d-flex justify-content-between align-item-center">
+                                {{-- <p style="color: #254336">Nama</p> --}}
+                                  <p class="text-danger">{{$item->status_pemesanan}}</p>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <img src="{{asset('assets/img/katalog_produk/'.$item->produk->gambar)}}" alt="produk" class="img-fluid">
+                                </div>
+                                <div class="col-md-9">
+                                  <div class="d-flex justify-content-between">
+                                    <b>
+                                      {{ $item->produk->nama_produk }} 
+                                    </b>
+                                    
+                                      x {{$item->jumlah_pesanan}}
+                                  </div>
+                                  <p class="d-flex justify-content-end"> 
+                                    {{$item->produk->harga}} 
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                      <p> Total Pesanan : </p>
+                                      {{$item->total_biaya}}
+                                    </div>
+                                  </p>
+                                </div>
+                              <hr>
+                              </div>
+                              @if ($item->status_pemesanan=='menunggu pembayaran')
+                              <div class="d-flex justify-content-center align-items-center">
+                                <a  class='text-center btn btn-danger' href="/pembayaran/{{$item->id}}">Bayar Sekarang</a>
+                              </div>
+                              @elseif ($item->status_pemesanan!="menunggu pembayaran" || $item->status_pemesanan!="menunggu konfirmasi admin")
+                              <div class="d-flex justify-content-center align-items-center">
+                                <a href="/nota-pembayaran/{{$item->id}}" class="btn btn-primary">Nota Pembelian</a>
+                              </div>
+
+                              @endif
+                             
+                            </div>
+                          </div>
+                        </div>
+                        @endforeach
+                         
+                      </div>
+                      @else
+                      <div class="d-flex justify-content-center align-items-center my-5 text-danger">
+                        Tidak Ada Pesanan
+                      </div>
+                          
+                      @endif  
                     </div>
     
                     <div class="tab-pane fade pt-3" id="dikirim">
-                        dikirim
+                      @if (count($pesanan_sedang_diproses))
+                      <div class="row">
+                        @foreach ($pesanan_sedang_diproses as $item)
+                        <div class="col-md-6 my-3">
+                          <div class="card">
+                            <div class="card-body my-4">
+                              <div class="d-flex justify-content-between align-item-center">
+                                {{-- <p style="color: #254336">Nama</p> --}}
+                                  <p class="text-danger">{{$item->status_pemesanan}}</p>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <img src="{{asset('assets/img/katalog_produk/'.$item->produk->gambar)}}" alt="produk" class="img-fluid">
+                                </div>
+                                <div class="col-md-9">
+                                  <div class="d-flex justify-content-between">
+                                    <b>
+                                      {{ $item->produk->nama_produk }} 
+                                    </b>
+                                    
+                                      x {{$item->jumlah_pesanan}}
+                                  </div>
+                                  <p class="d-flex justify-content-end"> 
+                                    {{$item->produk->harga}} 
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                      <p> Total Pesanan : </p>
+                                      {{$item->total_biaya}}
+                                    </div>
+                                  </p>
+                                </div>
+                              <hr>
+                              </div>
+                              @if ($item->status_pemesanan=='menunggu pembayaran')
+                              <div class="d-flex justify-content-center align-items-center">
+                                <a  class='text-center btn btn-danger' href="/pembayaran/{{$item->id}}">Bayar Sekarang</a>
+                              </div>
+                              @elseif ($item->status_pemesanan!="menunggu pembayaran" || $item->status_pemesanan!="menunggu konfirmasi admin")
+                              <div class="d-flex justify-content-center align-items-center">
+                                <a href="/nota-pembayaran/{{$item->id}}" class="btn btn-primary">Nota Pembelian</a>
+                              </div>
+                              
+
+                              @endif
+                             
+                            </div>
+                          </div>
+                        </div>
+                        @endforeach
+                         
+                      </div>
+                      @else
+                      <div class="d-flex justify-content-center align-items-center my-5 text-danger">
+                        Tidak Ada Pesanan
+                      </div>
+                          
+                      @endif  
                     </div>
     
                     <div class="tab-pane fade pt-3" id="selesai">
-                        selesai
+                      @if (count($pesanan_selesai))
+                      <div class="row">
+                        @foreach ($pesanan_selesai as $item)
+                        <div class="col-md-6 my-3">
+                          <div class="card">
+                            <div class="card-body my-4">
+                              <div class="d-flex justify-content-between align-item-center">
+                                {{-- <p style="color: #254336">Nama</p> --}}
+                                  <p class="text-danger">{{$item->status_pemesanan}}</p>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-3">
+                                  <img src="{{asset('assets/img/katalog_produk/'.$item->produk->gambar)}}" alt="produk" class="img-fluid">
+                                </div>
+                                <div class="col-md-9">
+                                  <div class="d-flex justify-content-between">
+                                    <b>
+                                      {{ $item->produk->nama_produk }} 
+                                    </b>
+                                    
+                                      x {{$item->jumlah_pesanan}}
+                                  </div>
+                                  <p class="d-flex justify-content-end"> 
+                                    {{$item->produk->harga}} 
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                      <p> Total Pesanan : </p>
+                                      {{$item->total_biaya}}
+                                    </div>
+                                  </p>
+                                </div>
+                              <hr>
+                              </div>
+                              @if ($item->status_pemesanan=='menunggu pembayaran')
+                              <div class="d-flex justify-content-center align-items-center">
+                                <a  class='text-center btn btn-danger' href="/pembayaran/{{$item->id}}">Bayar Sekarang</a>
+                              </div>
+                              @elseif ($item->status_pemesanan!="menunggu pembayaran" || $item->status_pemesanan!="menunggu konfirmasi admin")
+                              <div class="d-flex justify-content-center align-items-center">
+                                <a href="/nota-pembayaran/{{$item->id}}" class="btn btn-primary">Nota Pembelian</a>
+                              </div>
+                              
+
+                              @endif
+                             
+                            </div>
+                          </div>
+                        </div>
+                        @endforeach
+                         
+                      </div>
+                      @else
+                      <div class="d-flex justify-content-center align-items-center my-5 text-danger">
+                        Tidak Ada Pesanan
+                      </div>
+                          
+                      @endif     
                     </div>
     
-                    <div class="tab-pane fade pt-3" id="dibatalkan">
-                     dibatalkan
-                    </div>
+                    
                   </div><!-- End Bordered Tabs -->
     
                 </div>

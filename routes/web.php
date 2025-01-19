@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DasboardController;
+use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\JenisHewanController;
 use App\Http\Controllers\KatalogProdukController;
 
@@ -39,21 +40,22 @@ Route::group(['middleware' => 'cekrole:admin'], function() {
     Route::resource('jenis-hewan', JenisHewanController::class)->names('jenis-hewan'); 
     Route::resource('user', UserController::class)->names('user');
     Route::resource('produk', KatalogProdukController::class)->names('produk');
-    Route::get('/pesanan', function () {
-        return view('pages/admin/pesanan/index');
-    });
-    
+    Route::get('/pesanan', [PemesananController::class, 'index_admin']); 
+    Route::get('/konfirmasi/{id}', [PemesananController::class, 'konfirmasi']);
+    Route::get('/selesai/{id}', [PemesananController::class, 'selesai']);
 });
 
 Route::group(['middleware' => 'cekrole:customer'], function() {
-    Route::get('/order/{id}', [KatalogProdukController::class, 'index_user']);
-    Route::post('/order', [KatalogProdukController::class, 'store']);
+    Route::get('/order/{id}', [PemesananController::class, 'index_user']);
+    Route::post('/order', [PemesananController::class, 'store']);
+    Route::get('/pesanan-saya', [PemesananController::class, 'view_pesanan']); 
+    Route::get('/pembayaran/{id}', [PemesananController::class, 'pembayaran']);
+    Route::put('/pembayaran/{id}', [PemesananController::class, 'bukti_pembayaran']);
+    Route::get('/nota-pembayaran/{id}', [PemesananController::class, 'nota_pembayaran']);
 });
 
 
-Route::get('/pesanan-saya', function () {
-    return view('pages/customer/detail-pembelian');
-});
+
 
 
 
@@ -66,6 +68,13 @@ Route::get('/login', function () {
     return view('pages/login');
 });
 
+Route::get('/register', function () {
+    return view('pages/register');
+});
+
+Route::post('/register', [LoginController::class, 'register']);
+
 Route::get('/pemesanan', function () {
     return view('pages/customer/pembelian');
 });
+

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\KatalogProduk;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -45,6 +48,28 @@ class LoginController extends Controller
             }
         } 
  
+    }
+
+    public function register(Request $request) {
+        $request->validate([
+             'nama' => 'required', 
+             'email' => 'required|email|unique:users,email',
+             'password' => 'required', 
+             'alamat' => 'required',
+             'no_telepon' => 'required',
+         ]);
+        $user=new User();
+        $user->nama=$request->nama;
+        $user->email=$request->email;
+        $user->password=Hash::make($request->password);
+        $user->alamat=$request->alamat;
+        $user->no_telepon=$request->no_telepon;
+        $user->role='customer';
+        if ($user->save()) {
+            return redirect("/login")->with("sukses","Data User Berhasil Disimpan");
+        } else {
+            return redirect()->back();
+        }
     }
 
 }

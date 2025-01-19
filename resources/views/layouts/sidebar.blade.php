@@ -38,22 +38,16 @@
             <span>Katalog Produk</span>
           </a>
         </li><!-- End Nav -->
-        <!-- Nav -->
-        <li class="nav-item">
-          <a href="/jenis-hewan" class="nav-link collapsed">
-            <i class="bi bi-piggy-bank"></i>
-            <span>Jenis Hewan</span>
-          </a>
-        </li><!-- End Nav -->
+        
       @endif
 
-      <!-- Nav -->
+      {{-- <!-- Nav -->
       <li class="nav-item">
         <a href="/laporan" class="nav-link collapsed">
           <i class="bi bi-file-earmark-text"></i>
           <span>Laporan</span>
         </a>
-      </li><!-- End Nav -->
+      </li><!-- End Nav --> --}}
 
       @if (auth()->user()->role=="admin")
         <!-- Nav -->

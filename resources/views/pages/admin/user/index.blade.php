@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Penyembelih</h1>
+        <h1>User</h1>
         <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="">Home</a></li>
-            <li class="breadcrumb-item active">Penyembelih</li>
+            <li class="breadcrumb-item active">User</li>
         </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -41,7 +41,6 @@
                                         <th>EMAIL</th>
                                         <th>ALAMAT</th>
                                         <th>NO HP</th>
-                                        <th>GENDER</th>
                                         <th>ROLE</th>
                                         <th>AKSI</th>
                                     </thead>
@@ -53,7 +52,6 @@
                                                 <td>{{$item->email}}</td>
                                                 <td>{{$item->alamat}}</td>
                                                 <td>{{$item->no_telepon}}</td>
-                                                <td>{{$item->jenis_kelamin}}</td>
                                                 <td>{{$item->role}}</td>
                                                 <td>
                                                     <a href="{{route('user.edit',$item->id)}}">Edit Data</a>

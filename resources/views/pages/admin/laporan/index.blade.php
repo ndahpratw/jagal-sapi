@@ -18,7 +18,42 @@
                     <!-- Card -->
                     <div class="col-lg-8">
 
- 
+                        <div class="row">
+                            <div class="col-xl-12">
+                               @if (session()->has("sukses"))
+                               <div class="alert alert-primary d-flex align-items-center" role="alert">
+                                <i class="bi bi-check-circle"></i>
+                                <div>
+                                   {{session("sukses")}}
+                                </div>
+                              </div>   
+                               @endif
+                                 
+                            </div>
+                           </div>
+        
+        
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                                <th>NO</th>
+                                                <th>TANGGAL PEMESANAN</th>
+                                                <th>PEMESAN</th>
+                                                <th>PESANAN</th>
+                                                <th>JUMLAH</th>
+                                                <th>BIAYA</th>
+                                                <th>ALAMAT</th>
+                                                <th>STATUS PESANAN</th>
+                                                <th>BUKTI</th>
+                                                <th>PESAN</th>
+                                            </thead>
+                                            <tbody>
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
 
                     </div><!-- End Card -->
                 </div>

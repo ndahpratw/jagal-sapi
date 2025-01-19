@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('alamat');
             $table->string('no_telepon');
-            $table->enum('jenis_kelamin',['laki-laki','perempuan']);
             $table->enum('role',['admin','customer','penyembelih']);
             $table->timestamps();
         });

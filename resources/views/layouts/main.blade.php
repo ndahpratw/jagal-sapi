@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ asset('assets/img/logo.jpg') }}" rel="icon">
-  <link href="{{ asset('assets/img/logo.jpg') }}" rel="apple-touch-icon">
+  <link href="{{ asset('assets/img/logo.png') }}" rel="icon">
+  <link href="{{ asset('assets/img/logo.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -27,11 +27,9 @@
   <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  @if (auth()->user()->role == 'customer')
+  
     <link href="{{  asset('assets/css/user.css') }}" rel="stylesheet">
-  @else
-    <link href="{{  asset('assets/css/style.css') }}" rel="stylesheet">
-  @endif
+  
 
   <!-- =======================================================
   * Template Name: NiceAdmin
