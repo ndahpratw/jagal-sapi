@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\JenisHewanController;
 use App\Http\Controllers\KatalogProdukController;
+use App\Http\Controllers\JadwalPemotonganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +27,8 @@ Route::get('/', [DasboardController::class, 'index']);
 
 
 Route::group(['middleware' => 'cekrole:admin,penyembelih'], function() {
-    Route::get('/jadwal-pemotongan', function () {
-        return view('pages/admin/jadwal pemotongan/index');
-    });
-    Route::get('/laporan', function () {
-        return view('pages/admin/laporan/index');
-    });
+   
+    Route::resource('jadwal-pemotongan', JadwalPemotonganController::class)->names('jadwal-pemotongan');
     Route::get('/dashboard', function () {
         return view('pages/dashboard');
     });
@@ -43,6 +41,8 @@ Route::group(['middleware' => 'cekrole:admin'], function() {
     Route::get('/pesanan', [PemesananController::class, 'index_admin']); 
     Route::get('/konfirmasi/{id}', [PemesananController::class, 'konfirmasi']);
     Route::get('/selesai/{id}', [PemesananController::class, 'selesai']);
+    Route::get('/laporan', [LaporanController::class, 'index']); 
+   
 });
 
 Route::group(['middleware' => 'cekrole:customer'], function() {

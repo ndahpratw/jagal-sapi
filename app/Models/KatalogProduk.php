@@ -9,6 +9,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class KatalogProduk extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'nama_produk',
+        'deskripsi',
+        'gambar',
+        'stok',
+        'satuan',
+        'harga',
+    ];
 
     public function jenisHewan()
     {

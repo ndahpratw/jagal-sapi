@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('katalog_produks', function (Blueprint $table) {
             $table->id();
-            $table->enum('nama_produk',["Pemotongan Sapi", "Penjualan Sapi Ternak", "Penjualan Daging Sapi"]);
+            // $table->enum('nama_produk',["Pemotongan Sapi", "Penjualan Sapi Ternak", "Penjualan Daging Sapi"]);
+            $table->string('nama_produk');
             $table->string('deskripsi');
             $table->string('gambar');
             // $table->foreignId('id_hewan')->references('id')->on('jenis_hewans')->onDelete('cascade');

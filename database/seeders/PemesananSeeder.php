@@ -15,8 +15,8 @@ class PemesananSeeder extends Seeder
     {
         DB::table('pemesanans')->insert([
             [
-                'status_pemesanan' => 'pesanan sedang diproses',
-                'id_laporan' => null, // Sesuaikan jika ada laporan terkait
+                'status_pemesanan' => 'menunggu konfirmasi admin',
+                'id_penyembelih' => null, // Sesuaikan jika ada laporan terkait
                 'id_konsumen' => 2, // Sesuaikan dengan ID konsumen pada tabel users
                 'id_produk' => 1, // Sesuaikan dengan ID produk pada tabel katalog_produks
                 'tanggal_pemesanan' => '2024-01-01',
@@ -28,7 +28,7 @@ class PemesananSeeder extends Seeder
             ],
             [
                 'status_pemesanan' => 'menunggu pembayaran',
-                'id_laporan' => 1, // Sesuaikan dengan ID laporan pada tabel laporan_pemotongans
+                'id_penyembelih' => null, // Sesuaikan dengan ID laporan pada tabel laporan_pemotongans
                 'id_konsumen' => 2, // Sesuaikan dengan ID konsumen pada tabel users
                 'id_produk' => 2, // Sesuaikan dengan ID produk pada tabel katalog_produks
                 'tanggal_pemesanan' => '2024-01-02',
@@ -39,8 +39,8 @@ class PemesananSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'status_pemesanan' => 'menunggu konfirmasi admin',
-                'id_laporan' => 2, // Sesuaikan dengan ID laporan pada tabel laporan_pemotongans
+                'status_pemesanan' => 'pesanan sedang diproses',
+                'id_penyembelih' => null, // Sesuaikan dengan ID laporan pada tabel laporan_pemotongans
                 'id_konsumen' => 3, // Sesuaikan dengan ID konsumen pada tabel users
                 'id_produk' => 3, // Sesuaikan dengan ID produk pada tabel katalog_produks
                 'tanggal_pemesanan' => '2024-01-03',

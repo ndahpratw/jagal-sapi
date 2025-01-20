@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->id();
             $table->enum('status_pemesanan',["menunggu pembayaran", "menunggu konfirmasi admin", "pesanan sedang diproses", "pesanan selesai"]);
-            $table->foreignId('id_laporan')->nullable()->references('id')->on('laporan_pemotongans')->onDelete('cascade');
+            $table->foreignId('id_penyembelih')->nullable()->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('id_konsumen')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('id_produk')->references('id')->on('katalog_produks')->onDelete('cascade');
             $table->date('tanggal_pemesanan');

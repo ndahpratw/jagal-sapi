@@ -16,8 +16,9 @@
             <div class="col-lg-12">
                 
                     <!-- Card -->
-                   <a href="{{route('produk.create')}}">Tambah Data</a>
+                  
                    <div class="row">
+                   
                     <div class="col-xl-12">
                        @if (session()->has("sukses"))
                        <div class="alert alert-primary d-flex align-items-center" role="alert">
@@ -33,6 +34,7 @@
 
 
                         <div class="card">
+                            <a class="m-3 btn btn-primary" href="{{route('produk.create')}}">Tambah Data</a>
                             <div class="card-body">
                                 <table class="table">
                                     <thead>
@@ -54,7 +56,29 @@
                                                 <td>{{$item->stok}} {{$item->satuan}}</td>
                                                 <td>{{$item->deskripsi}}</td>
                                                 <td>
-                                                    <a href="{{route('produk.edit',$item->id)}}">Edit Data</a>
+                                                    <a class="btn btn-primary btn-sm" href="{{route('produk.edit',$item->id)}}"><i class="bi bi-pencil-fill"></i></a>
+                                                    <button type="button" class="btn btn-danger btn-sm shadow-none" data-bs-toggle="modal" data-bs-target="#hapus-produk{{$item->id}}"><i class="bi bi-trash-fill"></i></button>
+                                                    <div class="modal fade" id="hapus-produk{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-center">Konfirmasi Hapus Produk</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <p style="color: black">Apakah anda yakin untuk menghapus <br> <b>{{ $item->nama_produk }}</b> beserta data terkait dari katalog ?</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary btn-sm shadow-none" data-bs-dismiss="modal">Tidak</button>
+                                                                    <form action="{{ route('produk.destroy', $item->id) }}" method="POST" style="display: inline;">
+                                                                        @method('delete')
+                                                                        @csrf
+                                                                        <input type="submit" value="Hapus" class="btn btn-danger btn-sm shadow-none">
+                                                                    </form> 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -20,4 +20,8 @@ class Pemesanan extends Model
     {
         return $this->belongsTo(User::class, 'id_konsumen');
     }
+    public function penyembelih()
+    {
+        return $this->belongsTo(User::class, 'id_penyembelih');
+    }
 }

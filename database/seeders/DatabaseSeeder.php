@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             HewanSeeder::class,
             ProdukSeeder::class,
-            LaporanSeeder::class,
             PemesananSeeder::class
         ]);
     }

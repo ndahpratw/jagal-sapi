@@ -33,33 +33,30 @@
       @if (auth()->user()->role=="admin")
         <!-- Nav -->
         <li class="nav-item">
-          <a href="/produk" class="nav-link collapsed">
+          <a href="/produk" class="nav-link {{ Request::is('produk*') ? '' : 'collapsed' }}">
             <i class="bi bi-basket"></i>
             <span>Katalog Produk</span>
           </a>
         </li><!-- End Nav -->
         
-      @endif
-
-      {{-- <!-- Nav -->
+        <!-- Nav -->
       <li class="nav-item">
-        <a href="/laporan" class="nav-link collapsed">
+        <a href="/laporan" class="nav-link {{ Request::is('laporan*') ? '' : 'collapsed' }}">
           <i class="bi bi-file-earmark-text"></i>
           <span>Laporan</span>
         </a>
-      </li><!-- End Nav --> --}}
-
-      @if (auth()->user()->role=="admin")
+      </li><!-- End Nav -->
+     
         <!-- Nav -->
         <li class="nav-item">
-          <a href="/user" class="nav-link collapsed">
+          <a href="/user" class="nav-link {{ Request::is('user*') ? '' : 'collapsed' }}">
             <i class="bi bi-people-fill"></i>
             <span>User</span>
           </a>
         </li><!-- End Nav -->
         <!-- Nav -->
         <li class="nav-item">
-          <a href="/pesanan" class="nav-link collapsed">
+          <a href="/pesanan" class="nav-link {{ Request::is('pesanan*') ? '' : 'collapsed' }}">
             <i class="bi bi-cart"></i>
             <span>Pesanan</span>
           </a>
@@ -68,7 +65,7 @@
   
       <!-- Nav -->
       <li class="nav-item">
-        <a href="/jadwal-pemotongan" class="nav-link collapsed">
+        <a href="/jadwal-pemotongan" class="nav-link {{ Request::is('jadwal-pemotongan*') ? '' : 'collapsed' }}">
           <i class="bi bi-calendar-date"></i>
           <span>Jadwal Pemotongan</span>
         </a>
