@@ -77,32 +77,34 @@
               
             </div><!-- End Reports -->
 
-            <div class="col-8">
+            <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
                       <h5 class="text-center my-4 fw-bold">Informasi Pemasukan</h5>
+                      <div class="table-responsive">
                         <table class="table">
-                            <thead>
-                                <th>NO</th>
-                                <th>BULAN-TAHUN</th>
-                                <th>TOTAL PEMASUKAN</th>
-                            </thead>
-                            <tbody>
-                           @foreach ($data_pemasukan as $item)
-                               <tr>
-                                <td>{{$nomer++}}</td>
-                                <td>{{$item->bulan_tahun}}</td>
-                                <td>Rp {{ number_format($item->total_biaya, 0, ',', '.') }}</td>
-                               </tr>
-                           @endforeach
-                            </tbody>
-                        </table>
+                          <thead>
+                              <th>NO</th>
+                              <th>BULAN-TAHUN</th>
+                              <th>TOTAL PEMASUKAN</th>
+                          </thead>
+                          <tbody>
+                         @foreach ($data_pemasukan as $item)
+                             <tr>
+                              <td>{{$nomer++}}</td>
+                              <td>{{$item->bulan_tahun}}</td>
+                              <td>Rp {{ number_format($item->total_biaya, 0, ',', '.') }}</td>
+                             </tr>
+                         @endforeach
+                          </tbody>
+                      </table>
+                      </div>
                     </div>
                 </div>
 
             </div><!-- End Card -->
               
-            <div class="col-4">
+            <div class="col-lg-4">
                 <!-- Website Traffic -->
                 <div class="card">
                   <div class="card-body pb-0">
