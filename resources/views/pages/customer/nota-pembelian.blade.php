@@ -22,11 +22,11 @@
         <td width="80%" class="my-0 py-0 text-center">
           <h6 class="text-primary">NOTA</h6>
           <p style="font-size: 12px;" class="my-0 py-0">
-            CONTRACTOR, TRADING & SUPPLIER
+            JAGAL SAPI
           </p>
           <p style="font-size: 10px" class="my-0 py-0">
-            Office : Jln. Link Warungkara RT/RW 005/001 Randakari Ciwanda Kota Cilegon Provinsi Banten kode pos <br>
-            42446 Telp. 081234567890 Email : ptindokaryajasaprima@gmail.com
+            Sangkapura, Bawean, Gresik <br>
+            081333770512 Email : Jagalku@gmail.com
           </p>
         </td>
       </tr>
