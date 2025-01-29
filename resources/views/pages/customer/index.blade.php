@@ -150,7 +150,7 @@
             <div class="footer_location_text">
                <ul>
                   <li><img
-                      src="{{asset('template-user/images/map-icon.png')}}"><span class="padding_left_10"><a href="#">Sangkapura Baweam</a></span></li>
+                      src="{{asset('template-user/images/map-icon.png')}}"><span class="padding_left_10"><a href="#">Sangkapura Bawean</a></span></li>
                   <li><img src="{{asset('template-user/images/call-icon.png')}}"><span class="padding_left_10"><a href="#">Call : +6281333770512</a></span></li>
                   <li><img src="{{asset('template-user/images/mail-icon.png')}}"><span class="padding_left_10"><a href="#">jagalku@gmail.com</a></span></li>
                </ul>
