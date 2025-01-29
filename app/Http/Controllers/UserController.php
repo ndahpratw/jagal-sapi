@@ -62,11 +62,16 @@ class UserController extends Controller
         ]);
 
         $user=User::find($id);
+
+        if ($request->filled('password')) {
+            $password=Hash::make($request->password);
+        } else {
+            $password = $user->password;
+        }
+
         $user->nama=$request->nama;
         $user->email=$request->email;
-        if ($request->has('password')) {
-            $user->password=Hash::make($request->password);
-        }
+        $user->password = $password;
         $user->alamat=$request->alamat;
         $user->no_telepon=$request->telepon;
         $user->role=$request->role;
